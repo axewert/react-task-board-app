@@ -43,12 +43,5 @@ describe('Input: ', () => {
     expect(mockSubmitHandler.mock.results[0].value).toBe(expValue)
   }); 
 
-  it('shoud hide input after click on a button', () => {
-    fireEvent.change(inputElement, {
-      target: {value: expValue}
-    })
-    fireEvent.click(buttonElement)
-    buttonElement = screen.getByText(/Готово/i)
-    expect(buttonElement).toBeInTheDocument()
-  })
+
 })

@@ -5,7 +5,7 @@ import Input from './Input'
 
 const Tabs = ({items, maxAmount, addNewTab}) => {
   const [isInputOpen, setIsInputOpen] = useState(false)
-  
+
   const switchInput = () => {
     setIsInputOpen(!isInputOpen)
   }
@@ -32,7 +32,13 @@ const Tabs = ({items, maxAmount, addNewTab}) => {
   const renderTab = (id, tab) => {
     return (
       <li className="nav-item mx-1">
-        <a className="nav-link active" aria-current="page" href="#" id={id}>{tab.title}</a>
+        <a 
+          className="nav-link active" 
+          aria-current="page" 
+          href="#" 
+          id={id}
+          key={id}
+          >{tab.title}</a>
       </li>
     )
   }

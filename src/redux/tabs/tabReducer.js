@@ -1,7 +1,8 @@
 import { ADD_NEW_TAB } from "./tabTypes"
 
 const initialState = {
-  items: {},
+  items: {
+  },
   maxAmount: 4,
 }
 
