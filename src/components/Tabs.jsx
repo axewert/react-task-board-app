@@ -4,7 +4,7 @@ import { addNewTab } from '../redux/tabs/tabActions'
 import Input from './Input'
 
 const Tabs = ({items, maxAmount, addNewTab}) => {
-  const [isInputOpen, setIsInputOpen] = useState(false)
+  const [isInputOpen, setIsInputOpen] = useState(true)
 
   const switchInput = () => {
     setIsInputOpen(!isInputOpen)
@@ -31,13 +31,13 @@ const Tabs = ({items, maxAmount, addNewTab}) => {
 
   const renderTab = (id, tab) => {
     return (
-      <li className="nav-item mx-1">
+      <li className="nav-item mx-1" key={id}>
         <a 
           className="nav-link active" 
           aria-current="page" 
           href="#" 
           id={id}
-          key={id}
+          
           >{tab.title}</a>
       </li>
     )
@@ -45,7 +45,11 @@ const Tabs = ({items, maxAmount, addNewTab}) => {
   
   return (
     <>
-      {isInputOpen && <Input submitHandler={handleSubmitTab}/>}
+      <Input 
+        submitHandler={handleSubmitTab}
+        hidden = {isInputOpen}
+        toggleVisible={switchInput}
+      />
       <ul className="nav nav-pills justify-content-center pt-5">
           {Object.keys(items).map(id => {
             return renderTab(id, items[id])

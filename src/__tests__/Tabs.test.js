@@ -1,4 +1,4 @@
-import { render, fireEvent, screen } from '../utils/test.utils'
+import { render, fireEvent, screen, getByPlaceholderText } from '../utils/test.utils'
 import Tabs from '../components/Tabs';
 
 let tab, addTabBtn, mockClickHandler
@@ -27,12 +27,6 @@ describe('Tabs: ', () => {
     expect(addTabBtn).toBeInTheDocument()
   });
 
-  // test('should NOT renders \'new tab\' button when number of tabs > max tabs amount', () => {
-  //   render(<Tabs />, {initialState: {tabs: {items: testState}}})
-  //   addTabBtn = screen.getByText(/Добавить вкладку/i)
-  //   expect(addTabBtn).toBeInTheDocument()
-  // });
-
   test('should renders tabs', () => {
     render(<Tabs />, {initialState: {tabs: {items: testState}}})
     tab = screen.getAllByText(testText)
@@ -40,6 +34,10 @@ describe('Tabs: ', () => {
   });
 
   test('should handle click on a button', () => {
-
+    addTabBtn = screen.getByText(/Добавить вкладку/i)
+    const container = screen.getByTestId('input-container')
+    expect(container).toHaveClass('invisible')
+    fireEvent.click(addTabBtn)
+    expect(container).toHaveClass('visible')
   })
 })
