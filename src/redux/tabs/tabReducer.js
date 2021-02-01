@@ -4,16 +4,15 @@ const initialState = {
   items: {
   },
   maxAmount: 4,
-  prevActiveID: '-MSTCo5SYH-lK5sSiqU2'
+  active: ''
 }
 
 const tabReducer = (state = initialState, action) => {
   switch(action.type) {
     case ADD_NEW_TAB:
-
       return {
         ...state,
-        prevActiveID: action.payload.id,
+        active: action.payload.id,
         items: {
           ...state.items,
           [action.payload.id]: {
@@ -23,21 +22,9 @@ const tabReducer = (state = initialState, action) => {
       }
     case SET_ACTIVE_TAB:
       const current = action.payload.id
-      const prev = state.prevActiveID
       return {
         ...state,
-        prevActiveID: current,
-        items: {
-          ...state.items,
-          [current]: {
-            ...state.items[current],
-            isActive: true
-          },
-          [prev]: {
-            ...state.items[prev],
-            isActive: false
-          }
-        }
+        active: current,
       } 
     default:
       return state

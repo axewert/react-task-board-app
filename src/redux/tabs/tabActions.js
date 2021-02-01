@@ -1,15 +1,23 @@
 import { ADD_NEW_TAB, SET_ACTIVE_TAB } from "./tabTypes";
 import axios from 'axios'
+import { cleanCategory, fetchCategories } from "../categories/categoryActions";
 
 
 export const setActiveTab = (id) => {
-  console.log(id)
   return ({
     type: SET_ACTIVE_TAB,
     payload: {
       id,
     }
   })
+}
+
+export const switchTab = (id) => {
+  return dispatch => {
+    dispatch(cleanCategory(id))
+    dispatch(fetchCategories(id))
+    dispatch(setActiveTab(id))
+  }
 }
 
 const updateState = ({id, title}) => {
@@ -27,7 +35,6 @@ export const fetchTabs = () => {
     axios
       .get(`https://react-note-app-5123a-default-rtdb.firebaseio.com/tabs.json`)
       .then(res => {
-        console.log(res.data)
         if(res.data) {
           Object.keys(res.data).map(id => {
             return dispatch(updateState(

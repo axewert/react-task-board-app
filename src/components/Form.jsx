@@ -5,7 +5,7 @@ import { hideForm } from '../redux/form/formActions'
 import { addNewTab } from '../redux/tabs/tabActions'
 import { addNewTask, uploadTasks } from '../redux/tasks/taskActions'
 
-const Form = ({state, addNewTab, addNewCategory, hideForm, addNewTask, uploadTasks}) => {
+const Form = ({state, addNewTab, addNewCategory, hideForm, activeTab, uploadTasks}) => {
   const {
     formHidden,
     formSimple,
@@ -51,7 +51,8 @@ const Form = ({state, addNewTab, addNewCategory, hideForm, addNewTask, uploadTas
       addNewTab(value)
       handleHideForm()
     } else if(type.NEW_CATEGORY) {
-      addNewCategory(value)
+      console.log(activeTab)
+      addNewCategory(value, activeTab)
       handleHideForm()
     } else if(type.NEW_TASK) {
       uploadTasks(value, categoryID)
@@ -122,7 +123,8 @@ const Form = ({state, addNewTab, addNewCategory, hideForm, addNewTask, uploadTas
 }
 
 const mapStateToProps = state => ({
-  state: state.form
+  state: state.form,
+  activeTab: state.tabs.active
 })
 
 const mapDispatchToProps = {

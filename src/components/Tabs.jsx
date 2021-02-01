@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import {connect} from 'react-redux'
 import { showForm, showTabForm } from '../redux/form/formActions'
-import { addNewTab, fetchTabs, setActiveTab } from '../redux/tabs/tabActions'
+import { addNewTab, fetchTabs, switchTab } from '../redux/tabs/tabActions'
 import Form from './Form'
 
-const Tabs = ({items, maxAmount, showTabForm, fetchTabs, setActiveTab}) => {
+const Tabs = ({items, maxAmount, showTabForm, fetchTabs, switchTab, active}) => {
   useEffect(() => {
     fetchTabs()
   }, [])
@@ -23,15 +23,14 @@ const Tabs = ({items, maxAmount, showTabForm, fetchTabs, setActiveTab}) => {
   }
 
   const renderTab = (id, tab) => {
-    console.log(tab)
     return (
       <li className="nav-item mx-1" key={id}>
         <a 
-          className={tab.isActive? 'nav-link active': 'nav-link'} 
+          className={id===active ? 'nav-link active': 'nav-link'} 
           aria-current="page" 
           href="#"
           id={id}
-          onClick={() => setActiveTab(id)}
+          onClick={() => switchTab(id)}
           >{tab.title}</a>
       </li>
     )
@@ -56,7 +55,7 @@ const mapStatetoProps = state => ({
 
 const mapDispatchToProps = {
   fetchTabs , showTabForm , 
-  setActiveTab
+  switchTab
 }
 
 export default connect(mapStatetoProps, mapDispatchToProps)(Tabs)

@@ -6,8 +6,8 @@ import Tabs from "./Tabs";
 
 
 function App({categories, showCategoryForm}) {
-  const {items, maxAmount} = categories
-
+  const {items, maxAmount, placeholder} = categories
+  console.log(placeholder)
   const addCatBtn = () => {
     if(Object.keys(items).length < maxAmount) {
       return (
@@ -37,6 +37,7 @@ function App({categories, showCategoryForm}) {
     <div className="App">      
       <Tabs />
       <Form />
+      {placeholder && <h2>HELLO</h2>}
       <div className="container-fluid d-flex mt-5">
         {Object.keys(items).map(id => {
           return renderCategories(items[id], id)
@@ -49,7 +50,7 @@ function App({categories, showCategoryForm}) {
 
 const mapStateToProps = state => ({
   categories: state.categories,
-  form: state.form
+  form: state.form,
 })
 
 const mapDispatchToProps = {

@@ -1,13 +1,11 @@
 import { useEffect } from "react"
 import { connect } from "react-redux"
+import { fetchCategories } from "../redux/categories/categoryActions"
 import { showTaskForm } from "../redux/form/formActions"
 import { fetchTasks } from "../redux/tasks/taskActions"
 
-const Category = ({title, showTaskForm, categoryID, allTasks, fetchTasks}) => {
-  useEffect(() => {
-    fetchTasks(categoryID)
-  },[])
-  
+const Category = ({title, showTaskForm, categoryID, allTasks, fetchCategories, activeTab}) => {
+ 
   const getTasks = () => {
     const tasks = allTasks[categoryID]
     return Object.keys(tasks).map(id => {
@@ -40,11 +38,13 @@ const Category = ({title, showTaskForm, categoryID, allTasks, fetchTasks}) => {
 
 const mapDispatchToProps = {
   showTaskForm,
-  fetchTasks
+  fetchTasks,
+  fetchCategories
 }
 
 const mapStateToProps = (state) => ({
-  allTasks: state.tasks
+  allTasks: state.tasks,
+  activeTab: state.tabs.active
 })
 
 
