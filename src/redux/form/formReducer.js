@@ -26,6 +26,7 @@ const formReducer = (state = initialState, action) => {
       return {
         ...state,
         formHidden: false,
+        formSimple: true,
         inputTitle: 'название вкладки',
         type: {
           NEW_TAB: 'NEW_TAB'
@@ -36,6 +37,7 @@ const formReducer = (state = initialState, action) => {
       return {
         ...state,
         formHidden: false,
+        formSimple: true,
         inputTitle: 'название категории',
         type: {
           NEW_CATEGORY: 'NEW_CATEGORY'
@@ -47,6 +49,7 @@ const formReducer = (state = initialState, action) => {
         formHidden: false,
         formSimple: false,
         inputTitle: 'название задачи',
+        textAreaTitle: 'описание задачи',
         type: {
           NEW_TASK: 'NEW_TASK'
         },

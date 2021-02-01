@@ -10,7 +10,6 @@ const Form = ({state, addNewTab, addNewCategory, hideForm, addNewTask}) => {
     formHidden,
     formSimple,
     inputTitle,
-    textAreaName,
     textAreaTitle,
     type, 
     categoryID
@@ -36,11 +35,20 @@ const Form = ({state, addNewTab, addNewCategory, hideForm, addNewTask}) => {
     hideForm()
   }
 
+  const trimValue = () => {
+    Object.keys(value).map(id => {
+        value[id].trim()
+        setValue({id: value[id]})
+    })
+  }
+
   const handleSubmit = () => {
-    if(type.NEW_TAB && value) {
+    trimValue()
+
+    if(type.NEW_TAB) {
       addNewTab(value)
       handleHideForm()
-    } else if(type.NEW_CATEGORY && value) {
+    } else if(type.NEW_CATEGORY) {
       addNewCategory(value)
       handleHideForm()
     } else if(type.NEW_TASK) {
@@ -49,16 +57,22 @@ const Form = ({state, addNewTab, addNewCategory, hideForm, addNewTask}) => {
     }
   }
 
+  const capitalize = (text) => {
+    const letter = text.charAt(0).toUpperCase()
+    return letter + text.slice(1)
+  }
+
   const renderTextArea = () => {
     return (
       <div className="mb-3">
-        <label className="form-label">{textAreaTitle}</label>
+        <label className="form-label">{capitalize(textAreaTitle)}</label>
         <textarea 
           className="form-control" 
           rows={3} 
-          defaultValue={`Введите ${textAreaTitle}`} 
-          name={textAreaName}
+          name='body'
           value={value.body}
+          onChange={(e) => handleChange(e)}
+          placeholder={`Введите ${textAreaTitle}`}
         />
       </div>
     )
@@ -75,7 +89,7 @@ const Form = ({state, addNewTab, addNewCategory, hideForm, addNewTask}) => {
         <div className="container w-50 bg-white position-absolute p-3 rounded" style={{zIndex: 3000}}>
 
           <div className="mb-3">
-            <label className="form-label">{inputTitle}</label>
+            <label className="form-label">{capitalize(inputTitle)}</label>
             <input 
               type="text" 
               className="form-control" 
