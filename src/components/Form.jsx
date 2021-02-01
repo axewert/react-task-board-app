@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { addNewCategory } from '../redux/categories/categoryActions'
 import { hideForm } from '../redux/form/formActions'
 import { addNewTab } from '../redux/tabs/tabActions'
+import { addNewTask } from '../redux/tasks/taskActions'
 
-const Form = ({state, addNewTab, addNewCategory, hideForm}) => {
-
+const Form = ({state, addNewTab, addNewCategory, hideForm, addNewTask}) => {
   const {
     formHidden,
     formSimple,
@@ -13,6 +13,7 @@ const Form = ({state, addNewTab, addNewCategory, hideForm}) => {
     textAreaName,
     textAreaTitle,
     type, 
+    categoryID
   } = state
   
   const inititalValue = {
@@ -27,7 +28,6 @@ const Form = ({state, addNewTab, addNewCategory, hideForm}) => {
     setValue(prev => ({...prev, ...{
       [evt.target.name]: evt.target.value
     }}))
-    console.log(value)
   }
  
 
@@ -42,6 +42,9 @@ const Form = ({state, addNewTab, addNewCategory, hideForm}) => {
       handleHideForm()
     } else if(type.NEW_CATEGORY && value) {
       addNewCategory(value)
+      handleHideForm()
+    } else if(type.NEW_TASK) {
+      addNewTask(value, categoryID)
       handleHideForm()
     }
   }
@@ -109,7 +112,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   hideForm, 
   addNewTab,
-  addNewCategory
+  addNewCategory,
+  addNewTask
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form)

@@ -3,7 +3,8 @@ import { ADD_NEW_CATEGORY } from "./categoryTypes"
 const initialState = {
   maxAmount: 5,
   items: {
-    '0': {title: 'to-do'}
+    'todo': {title: 'to-do'},
+    'des': {title: 'design'}
   }
 }
 

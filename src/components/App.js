@@ -22,10 +22,13 @@ function App({categories, showCategoryForm}) {
     }
   }
 
-  const renderCategories = (category) => {
+  const renderCategories = (category, id) => {
     return (
       <>     
-        <Category title = {category.title}/>
+        <Category 
+          title = {category.title}
+          categoryID={id}
+        />
       </>
     )
   }
@@ -36,7 +39,7 @@ function App({categories, showCategoryForm}) {
       <Form />
       <div className="container-fluid d-flex mt-5">
         {Object.keys(items).map(id => {
-          return renderCategories(items[id])
+          return renderCategories(items[id], id)
         })}
       </div>
       {addCatBtn()}

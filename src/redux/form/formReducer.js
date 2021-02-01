@@ -1,23 +1,21 @@
-import {HIDE_FORM, SHOW_FORM, SHOW_TAB_FORM, SHOW_CATEGORY_FORM} from './formTypes'
+import {
+  HIDE_FORM, 
+  SHOW_TAB_FORM, 
+  SHOW_CATEGORY_FORM,
+  SHOW_TASK_FORM
+} from './formTypes'
 
 const initialState = {
   formHidden: true,
   formSimple: true,
-  inputName: '',
   inputTitle:'',
-  textAreaName: '',
   textAreaTitle:'',
-  type: ''
+  type: '',
+  categoryID: ''
 }
 
 const formReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SHOW_FORM:
-      return {
-        ...state,
-        formHidden: false
-      }
-
     case HIDE_FORM: 
       return {
         ...state,
@@ -28,7 +26,6 @@ const formReducer = (state = initialState, action) => {
       return {
         ...state,
         formHidden: false,
-        inputName: 'title',
         inputTitle: 'название вкладки',
         type: {
           NEW_TAB: 'NEW_TAB'
@@ -39,11 +36,21 @@ const formReducer = (state = initialState, action) => {
       return {
         ...state,
         formHidden: false,
-        inputName: 'categoryTitle',
         inputTitle: 'название категории',
         type: {
           NEW_CATEGORY: 'NEW_CATEGORY'
         }
+      }
+    case SHOW_TASK_FORM:
+      return {
+        ...state,
+        formHidden: false,
+        formSimple: false,
+        inputTitle: 'название задачи',
+        type: {
+          NEW_TASK: 'NEW_TASK'
+        },
+        categoryID: action.payload.categoryID
       }
 
     
