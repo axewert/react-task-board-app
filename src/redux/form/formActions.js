@@ -3,7 +3,6 @@ import {
   SHOW_TAB_FORM, 
   SHOW_CATEGORY_FORM,
   SHOW_TASK_FORM
-
 } from './formTypes'
 
 export const hideForm = () => {

@@ -23,13 +23,14 @@ const taskReducer = (state = initialState, action) => {
   const data = action.payload
   switch(action.type) {
     
-    case ADD_NEW_TASK: 
+    case ADD_NEW_TASK:
+      console.log(action.payload) 
       return {
         ...state,
         [data.categoryID]: {
           ...state[data.categoryID],
           [data.taskId]: {
-            ...data.value
+            ...data.task
           }
         }
       }

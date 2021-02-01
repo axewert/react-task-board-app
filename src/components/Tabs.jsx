@@ -1,10 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {connect} from 'react-redux'
 import { showForm, showTabForm } from '../redux/form/formActions'
-import { addNewTab } from '../redux/tabs/tabActions'
+import { addNewTab, fetchTabs, setActiveTab } from '../redux/tabs/tabActions'
 import Form from './Form'
 
-const Tabs = ({items, maxAmount, showTabForm, addNewTab}) => {
+const Tabs = ({items, maxAmount, showTabForm, fetchTabs, setActiveTab}) => {
+  useEffect(() => {
+    fetchTabs()
+  }, [])
   const renderBtn = () => {
     if(Object.keys(items).length < maxAmount) {
       return (
@@ -20,13 +23,15 @@ const Tabs = ({items, maxAmount, showTabForm, addNewTab}) => {
   }
 
   const renderTab = (id, tab) => {
+    console.log(tab)
     return (
       <li className="nav-item mx-1" key={id}>
         <a 
-          className="nav-link active" 
+          className={tab.isActive? 'nav-link active': 'nav-link'} 
           aria-current="page" 
-          href="#" 
+          href="#"
           id={id}
+          onClick={() => setActiveTab(id)}
           >{tab.title}</a>
       </li>
     )
@@ -50,7 +55,8 @@ const mapStatetoProps = state => ({
 })
 
 const mapDispatchToProps = {
-  addNewTab, showTabForm
+  fetchTabs , showTabForm , 
+  setActiveTab
 }
 
 export default connect(mapStatetoProps, mapDispatchToProps)(Tabs)

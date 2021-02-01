@@ -1,8 +1,12 @@
+import { useEffect } from "react"
 import { connect } from "react-redux"
 import { showTaskForm } from "../redux/form/formActions"
+import { fetchTasks } from "../redux/tasks/taskActions"
 
-const Category = ({title, showTaskForm, categoryID, allTasks}) => {
-
+const Category = ({title, showTaskForm, categoryID, allTasks, fetchTasks}) => {
+  useEffect(() => {
+    fetchTasks(categoryID)
+  },[])
   
   const getTasks = () => {
     const tasks = allTasks[categoryID]
@@ -35,7 +39,8 @@ const Category = ({title, showTaskForm, categoryID, allTasks}) => {
 
 
 const mapDispatchToProps = {
-  showTaskForm
+  showTaskForm,
+  fetchTasks
 }
 
 const mapStateToProps = (state) => ({
