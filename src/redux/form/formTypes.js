@@ -1,0 +1,1 @@
+const HIDE_FORM = 'HIDE_FORM'

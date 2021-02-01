@@ -1,20 +1,9 @@
 import { useState } from 'react'
 import {connect} from 'react-redux'
 import { addNewTab } from '../redux/tabs/tabActions'
-import Input from './Input'
+import CreateForm from './Form'
 
-const Tabs = ({items, maxAmount, addNewTab}) => {
-  const [isInputOpen, setIsInputOpen] = useState(true)
-
-  const switchInput = () => {
-    setIsInputOpen(!isInputOpen)
-  }
-  
-  const handleSubmitTab = (tabTitle) => {
-    addNewTab(tabTitle)
-    switchInput()
-  }
-
+const Tabs = ({items, maxAmount, addNewTab, clickHandler}) => {
   const renderBtn = () => {
     if(Object.keys(items).length < maxAmount) {
       return (
@@ -22,7 +11,7 @@ const Tabs = ({items, maxAmount, addNewTab}) => {
           <button 
             type="button" 
             className="btn btn-primary"
-            onClick={switchInput}
+            onClick={() => clickHandler()}
           >Добавить вкладку</button>
         </div>
       )
@@ -37,7 +26,6 @@ const Tabs = ({items, maxAmount, addNewTab}) => {
           aria-current="page" 
           href="#" 
           id={id}
-          
           >{tab.title}</a>
       </li>
     )
@@ -45,11 +33,6 @@ const Tabs = ({items, maxAmount, addNewTab}) => {
   
   return (
     <>
-      <Input 
-        submitHandler={handleSubmitTab}
-        hidden = {isInputOpen}
-        toggleVisible={switchInput}
-      />
       <ul className="nav nav-pills justify-content-center pt-5">
           {Object.keys(items).map(id => {
             return renderTab(id, items[id])

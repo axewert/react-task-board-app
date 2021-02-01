@@ -35,9 +35,9 @@ describe('Tabs: ', () => {
 
   test('should handle click on a button', () => {
     addTabBtn = screen.getByText(/Добавить вкладку/i)
-    const container = screen.getByTestId('input-container')
-    expect(container).toHaveClass('invisible')
+    const backdrop = screen.getByTestId('input-container')
+    expect(backdrop).toHaveClass('invisible')
     fireEvent.click(addTabBtn)
-    expect(container).toHaveClass('visible')
+    expect(backdrop).toHaveClass('visible')
   })
 })

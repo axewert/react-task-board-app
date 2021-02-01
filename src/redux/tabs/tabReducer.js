@@ -17,7 +17,6 @@ const tabReducer = (state = initialState, action) => {
             title: action.payload.tabTitle
           }
         }
-
       }
     default:
       return state
