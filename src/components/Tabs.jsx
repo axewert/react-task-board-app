@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import {connect} from 'react-redux'
+import { showForm, showTabForm } from '../redux/form/formActions'
 import { addNewTab } from '../redux/tabs/tabActions'
-import CreateForm from './Form'
+import Form from './Form'
 
-const Tabs = ({items, maxAmount, addNewTab, clickHandler}) => {
+const Tabs = ({items, maxAmount, showTabForm, addNewTab}) => {
   const renderBtn = () => {
     if(Object.keys(items).length < maxAmount) {
       return (
@@ -11,7 +12,7 @@ const Tabs = ({items, maxAmount, addNewTab, clickHandler}) => {
           <button 
             type="button" 
             className="btn btn-primary"
-            onClick={() => clickHandler()}
+            onClick={showTabForm}
           >Добавить вкладку</button>
         </div>
       )
@@ -33,6 +34,7 @@ const Tabs = ({items, maxAmount, addNewTab, clickHandler}) => {
   
   return (
     <>
+      <Form />
       <ul className="nav nav-pills justify-content-center pt-5">
           {Object.keys(items).map(id => {
             return renderTab(id, items[id])
@@ -44,11 +46,11 @@ const Tabs = ({items, maxAmount, addNewTab, clickHandler}) => {
 }
 
 const mapStatetoProps = state => ({
-  ...state.tabs
+  ...state.tabs,
 })
 
 const mapDispatchToProps = {
-  addNewTab
+  addNewTab, showTabForm
 }
 
 export default connect(mapStatetoProps, mapDispatchToProps)(Tabs)

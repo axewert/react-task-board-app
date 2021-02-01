@@ -14,7 +14,7 @@ const tabReducer = (state = initialState, action) => {
         items: {
           ...state.items,
           [action.payload.id]: {
-            title: action.payload.tabTitle
+            title: action.payload.title
           }
         }
       }

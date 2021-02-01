@@ -1,28 +1,62 @@
 import {useState} from 'react'
 import { connect } from 'react-redux'
+import { addNewCategory } from '../redux/categories/categoryActions'
 import { hideForm } from '../redux/form/formActions'
+import { addNewTab } from '../redux/tabs/tabActions'
 
-const Form = ({formSimple, formHidden, hideForm}) => {
-  const [value, setValue] = useState('')
+const Form = ({state, addNewTab, addNewCategory, hideForm}) => {
 
-  // const handleChange = evt => {
-  //   setValue(prev => ({...prev, ...{
-  //     [evt.target.name]: evt.target.value
-  //   }}))
-  // }
+  const {
+    formHidden,
+    formSimple,
+    inputTitle,
+    textAreaName,
+    textAreaTitle,
+    type, 
+  } = state
+  
+  const inititalValue = {
+    title:'',
+    body:''
+  }
 
-  // const handleSubmit = () => {
-  //   if(value) {
-  //     submitHandler(value)
-  //   }
-  //   setValue('')
-  // }
+  const [value, setValue] = useState(inititalValue)
+  
+
+  const handleChange = (evt) => {
+    setValue(prev => ({...prev, ...{
+      [evt.target.name]: evt.target.value
+    }}))
+    console.log(value)
+  }
+ 
+
+  const handleHideForm = () => {
+    setValue(inititalValue)
+    hideForm()
+  }
+
+  const handleSubmit = () => {
+    if(type.NEW_TAB && value) {
+      addNewTab(value)
+      handleHideForm()
+    } else if(type.NEW_CATEGORY && value) {
+      addNewCategory(value)
+      handleHideForm()
+    }
+  }
 
   const renderTextArea = () => {
     return (
       <div className="mb-3">
-        <label className="form-label">Example textarea</label>
-        <textarea className="form-control" rows={3} defaultValue={""} />
+        <label className="form-label">{textAreaTitle}</label>
+        <textarea 
+          className="form-control" 
+          rows={3} 
+          defaultValue={`Введите ${textAreaTitle}`} 
+          name={textAreaName}
+          value={value.body}
+        />
       </div>
     )
   }
@@ -38,15 +72,22 @@ const Form = ({formSimple, formHidden, hideForm}) => {
         <div className="container w-50 bg-white position-absolute p-3 rounded" style={{zIndex: 3000}}>
 
           <div className="mb-3">
-            <label className="form-label">Email address</label>
-            <input type="text" className="form-control" placeholder="name@example.com" />
+            <label className="form-label">{inputTitle}</label>
+            <input 
+              type="text" 
+              className="form-control" 
+              placeholder={`Введите ${inputTitle}`}
+              name='title'
+              onChange={(e) => handleChange(e)}
+              value={value.title}
+            />
           </div>
 
           {!formSimple && renderTextArea()}
 
           <div className="container d-flex justify-content-between">
-            <button type="button" className="btn btn-success">Success</button>
-            <button type="button" className="btn btn-danger" onClick={hideForm}>Danger</button>
+            <button type="button" className="btn btn-success" onClick={() => handleSubmit()}>Success</button>
+            <button type="button" className="btn btn-danger" onClick={handleHideForm}>Danger</button>
           </div>
 
         </div>
@@ -54,6 +95,7 @@ const Form = ({formSimple, formHidden, hideForm}) => {
           className="input-backdrop bg-dark w-100 h-100"
           style={{zIndex: 2000, opacity: .75}}
           data-testid="input-backdrop"
+          onClick={handleHideForm}
         />
       </div> 
     </>
@@ -61,11 +103,13 @@ const Form = ({formSimple, formHidden, hideForm}) => {
 }
 
 const mapStateToProps = state => ({
-  ...state.form
+  state: state.form
 })
 
 const mapDispatchToProps = {
-  hideForm
+  hideForm, 
+  addNewTab,
+  addNewCategory
 }
 
-export default connect(mapStateToProps)(Form)
+export default connect(mapStateToProps, mapDispatchToProps)(Form)

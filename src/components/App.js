@@ -1,11 +1,11 @@
 import {connect} from 'react-redux'
-import { addNewCategory } from "../redux/categories/categoryActions";
+import { showCategoryForm } from '../redux/form/formActions';
 import Category from "./Category";
 import Form from "./Form";
 import Tabs from "./Tabs";
 
 
-function App({categories}) {
+function App({categories, showCategoryForm}) {
   const {items, maxAmount} = categories
 
   const addCatBtn = () => {
@@ -15,6 +15,7 @@ function App({categories}) {
           <button 
             className="btn btn-primary" 
             type="submit"
+            onClick={showCategoryForm}
           >Добавить категорию</button>
         </div>
       )
@@ -49,7 +50,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  addNewCategory
+  showCategoryForm
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
