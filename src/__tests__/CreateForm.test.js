@@ -1,11 +1,11 @@
-import { render, fireEvent, screen } from '../utils/test.utils'
-import Input from '../components/Input';
+import { render, fireEvent, screen } from '@testing-library/react'
+import CreateForm from '../components/CreateForm';
 
 let inputElement, buttonElement, mockSubmitHandler
 
 beforeEach (() => {
   mockSubmitHandler = jest.fn()
-  render(<Input submitHandler={mockSubmitHandler}/>)
+  render(<CreateForm hidden={true} submitHandler={mockSubmitHandler}/>)
   inputElement = screen.getByPlaceholderText(/Введите название вкладки/i);
   buttonElement = screen.getByText(/Готово/i);
 })
@@ -34,7 +34,6 @@ describe('Input: ', () => {
     fireEvent.change(inputElement, {
       target: {value: expValue}
     })
-
     mockSubmitHandler.mockReturnValue(inputElement.value)
      
     fireEvent.click(buttonElement)
@@ -43,12 +42,4 @@ describe('Input: ', () => {
     expect(mockSubmitHandler.mock.results[0].value).toBe(expValue)
   }); 
 
-  it('shoud hide input after click on a button', () => {
-    fireEvent.change(inputElement, {
-      target: {value: expValue}
-    })
-    fireEvent.click(buttonElement)
-    buttonElement = screen.getByText(/Готово/i)
-    expect(buttonElement).toBeInTheDocument()
-  })
 })
