@@ -7,7 +7,6 @@ import Tabs from "./Tabs";
 
 function App({categories, showCategoryForm}) {
   const {items, maxAmount, placeholder} = categories
-  console.log(placeholder)
   const addCatBtn = () => {
     if(Object.keys(items).length < maxAmount) {
       return (

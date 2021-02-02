@@ -2,19 +2,14 @@ import axios from 'axios'
 
 import { ADD_NEW_TASK } from "./taskTypes"
 
-const url = 'https://react-note-app-5123a-default-rtdb.firebaseio.com'
 
 
-export const addNewTask = (taskId, task, categoryID) => {
-  console.log({taskId, task, categoryID})
-  return {
-    type: ADD_NEW_TASK,
-    payload: {
-      task, categoryID,
-      taskId
-    }
-  }
-}
+// export const addNewTask = (value, categoryID, activeTab) => {
+//   console.log({value, categoryID, activeTab})
+//   return {
+//     type: ADD_NEW_TASK,
+//   }
+// }
 
 // export function uploadTasks() {
 //   return function(dispatch) {
@@ -25,14 +20,26 @@ export const addNewTask = (taskId, task, categoryID) => {
 //   };
 // }
 
-export const uploadTasks = (value, categoryID) => {
+
+
+export const addNewTask = (value, categoryID, activeTab) => {
+  console.log({value, categoryID, activeTab}) 
   const task = {
     ...value
   }
   return dispatch => {
     axios
-      .post(`https://react-note-app-5123a-default-rtdb.firebaseio.com/categories/${categoryID}.json`, task)
-      .then(res => addNewTask(res.data, task, categoryID))
+      .post(`https://react-note-app-5123a-default-rtdb.firebaseio.com/tabs/${activeTab}/categories/${categoryID}/tasks.json`,task)
+      .then(res => {dispatch(updateTasks(task, res.data.name))})
+  }
+}
+
+export const updateTasks = (value, id) => {
+  return {
+    type: ADD_NEW_TASK,
+    payload: {
+      value, id
+    }
   }
 }
 

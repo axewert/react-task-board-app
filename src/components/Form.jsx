@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { addNewCategory } from '../redux/categories/categoryActions'
 import { hideForm } from '../redux/form/formActions'
 import { addNewTab } from '../redux/tabs/tabActions'
-import { addNewTask, uploadTasks } from '../redux/tasks/taskActions'
+import { addNewTask } from '../redux/tasks/taskActions'
 
-const Form = ({state, addNewTab, addNewCategory, hideForm, activeTab, uploadTasks}) => {
+const Form = ({state, addNewTab, addNewCategory, hideForm, activeTab, addNewTask}) => {
   const {
     formHidden,
     formSimple,
@@ -51,11 +51,10 @@ const Form = ({state, addNewTab, addNewCategory, hideForm, activeTab, uploadTask
       addNewTab(value)
       handleHideForm()
     } else if(type.NEW_CATEGORY) {
-      console.log(activeTab)
       addNewCategory(value, activeTab)
       handleHideForm()
     } else if(type.NEW_TASK) {
-      uploadTasks(value, categoryID)
+      addNewTask(value, categoryID, activeTab)
       handleHideForm()
     }
   }
@@ -132,7 +131,6 @@ const mapDispatchToProps = {
   addNewTab,
   addNewCategory,
   addNewTask,
-  uploadTasks,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form)

@@ -8,6 +8,7 @@ const Tabs = ({items, maxAmount, showTabForm, fetchTabs, switchTab, active}) => 
   useEffect(() => {
     fetchTabs()
   }, [])
+  
   const renderBtn = () => {
     if(Object.keys(items).length < maxAmount) {
       return (

@@ -43,7 +43,7 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => ({
-  allTasks: state.tasks,
+  allTasks: state.tasks.items,
   activeTab: state.tabs.active
 })
 
