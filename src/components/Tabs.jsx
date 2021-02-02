@@ -1,62 +1,59 @@
-import { useEffect, useState } from 'react'
-import {connect} from 'react-redux'
-import { showForm, showTabForm } from '../redux/form/formActions'
-import { addNewTab, fetchTabs, switchTab } from '../redux/tabs/tabActions'
-import Form from './Form'
+import './Tabs.scss'
 
-const Tabs = ({items, maxAmount, showTabForm, fetchTabs, switchTab, active}) => {
-  useEffect(() => {
-    fetchTabs()
-  }, [])
-  
-  const renderBtn = () => {
-    if(Object.keys(items).length < maxAmount) {
-      return (
-        <div className="container d-flex justify-content-center pt-3">
-          <button 
-            type="button" 
-            className="btn btn-primary"
-            onClick={showTabForm}
-          >Добавить вкладку</button>
-        </div>
-      )
-    }
+import { connect } from "react-redux"
+import { toggleTabs } from '../redux/rootActions'
+
+const Tabs = ({tabs, toggleTabs}) => {
+  const {
+    current, 
+    active, 
+    placeholder,
+    maxTabs,
+    newTabText
+  } = tabs
+
+  const handleToggle = (evt) => {
+    toggleTabs(evt.target.id)
   }
 
-  const renderTab = (id, tab) => {
+  const renderTab = (tab, id) => {
     return (
-      <li className="nav-item mx-1" key={id}>
+      <li className="nav-item" key={id}>
         <a 
-          className={id===active ? 'nav-link active': 'nav-link'} 
-          aria-current="page" 
-          href="#"
+          className={`nav-link${id === active ? ' active' : ''}`} 
+          onClick={(e) => handleToggle(e)}
           id={id}
-          onClick={() => switchTab(id)}
-          >{tab.title}</a>
+
+        >{tab.title}</a>
       </li>
     )
   }
-  
+
+  const renderButton = () => {
+    if(current < maxTabs) {
+      return <button type="button" className="btn btn-primary new-tab-btn">{newTabText}</button>
+    }
+  }
+
   return (
-    <>
-      <Form />
-      <ul className="nav nav-pills justify-content-center pt-5">
-          {Object.keys(items).map(id => {
-            return renderTab(id, items[id])
-          })}
+    <div className="container tabs-container">
+      {!current.length && <h3 className="placeholer">{placeholder}</h3>}
+      <ul className="nav nav-pills">
+        {current.map(id => {
+          return renderTab(tabs[id], id)
+        })}
       </ul>
-      {renderBtn()}
-    </>
+      {renderButton()}
+    </div>
   )
 }
 
-const mapStatetoProps = state => ({
-  ...state.tabs,
+const mapStateToProps = state => ({
+  tabs: state.tabs
 })
 
 const mapDispatchToProps = {
-  fetchTabs , showTabForm , 
-  switchTab
+  toggleTabs
 }
 
-export default connect(mapStatetoProps, mapDispatchToProps)(Tabs)
+export default connect(mapStateToProps, mapDispatchToProps)(Tabs)
