@@ -4,8 +4,14 @@ import { connect } from "react-redux"
 import { toggleTabs } from '../redux/rootActions'
 
 const Tabs = ({tabs, toggleTabs}) => {
-  const {current, active} = tabs
-  console.log(toggleTabs)
+  const {
+    current, 
+    active, 
+    placeholder,
+    maxTabs,
+    newTabText
+  } = tabs
+
   const handleToggle = (evt) => {
     toggleTabs(evt.target.id)
   }
@@ -23,13 +29,21 @@ const Tabs = ({tabs, toggleTabs}) => {
     )
   }
 
+  const renderButton = () => {
+    if(current < maxTabs) {
+      return <button type="button" className="btn btn-primary new-tab-btn">{newTabText}</button>
+    }
+  }
+
   return (
     <div className="container tabs-container">
+      {!current.length && <h3 className="placeholer">{placeholder}</h3>}
       <ul className="nav nav-pills">
         {current.map(id => {
           return renderTab(tabs[id], id)
         })}
       </ul>
+      {renderButton()}
     </div>
   )
 }
