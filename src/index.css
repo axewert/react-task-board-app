@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import 'reset-css';
+
 
 body {
   background-image: url('./img/dots.bg.png');
   background-size: cover;
-  color: #525f7f;
   text-align: left;
   background-color: #171941;
   font-family: 'Poppins', sans-serif;

@@ -7,46 +7,54 @@ function App({currentTabs, tabs}) {
 
   return (
     <>
-    
-      
-      <div className="tab-container">
-        <input type="radio" className="tab-check" name="btnradio" id="btnradio1" autoComplete="off" />
-        <label className="tab-item" htmlFor="btnradio1">Radio 1</label>
-        
-        <div className="input-container new-tab-input">
-          <input className='input' type="text" placeholder="Add new Tab"/>
+      <div className="nav-tabs-navigation">
+        <span className="material-icons nav-arrow nav-arrow_backward">arrow_forward_ios</span>
+        <div className="nav-tabs-container">
+          <div className="nav-tabs-item">
+            <input type="radio" name="tab-radio" id="tab-radio-0"/>
+            <label htmlFor="tab-radio-0">tab #1</label>
+          </div>
+          <div className="nav-tabs-item">
+            <input type="radio" name="tab-radio" id="tab-radio-1"/>
+            <label htmlFor="tab-radio-1">tab #1</label>
+          </div>
+          <div className="nav-tabs-item">
+            <input type="radio" name="tab-radio" id="tab-radio-1"/>
+            <label htmlFor="tab-radio-1">tab #1</label>
+          </div>
+          <div className="nav-tabs-item">
+            <input type="radio" name="tab-radio" id="tab-radio-1"/>
+            <label htmlFor="tab-radio-1">tab #1</label>
+          </div>
+          <div className="nav-tabs-item">
+            <input type="radio" name="tab-radio" id="tab-radio-1"/>
+            <label htmlFor="tab-radio-1">tab #1</label>
+          </div>
+          <div className="nav-tabs-item">
+            <input type="radio" name="tab-radio" id="tab-radio-1"/>
+            <label htmlFor="tab-radio-1">tab #1</label>
+          </div>
+          <div className="nav-tabs-item">
+            <input type="radio" name="tab-radio" id="tab-radio-1"/>
+            <label htmlFor="tab-radio-1">tab #1</label>
+          </div>
+          <div className="nav-tabs-item">
+            <input type="radio" name="tab-radio" id="tab-radio-1"/>
+            <label htmlFor="tab-radio-1">tab #1</label>
+          </div>
+          <div className="nav-tabs-item">
+            <input type="radio" name="tab-radio" id="tab-radio-1"/>
+            <label htmlFor="tab-radio-1">tab #1</label>
+          </div>
+          <div className="nav-tabs-item new-tab-input">
+            <div className="input-container input-container-round input-container-active">
+              <input type="text" className="input" placeholder="add new tab"/>
+              <button className="btn btn-round-circle btn-accept"><span className="material-icons btn-icon accept-icon">done</span></button>
+            </div>
+          </div>
         </div>
-       
+        <span className=" nav-arrow material-icons">arrow_forward_ios</span>
       </div>
-
-    <div className="group-container">
-      <div className="group-item">
-        <h3 className="group-item-header">Group1</h3>
-        <ul className="tasks-group">
-          <li className="task-group-item">Cras justo odio</li>
-          <li className="task-group-item">Cras justo odio</li>
-          <li className="task-group-item">Cras justo odio</li>
-          <li className="task-group-item">Cras justo odio</li>
-          <li className="task-group-item">Cras justo odio</li>
-          <li className="task-group-item">Cras justo odio</li>
-          <li className="task-group-item">Cras justo odio</li>
-          <li className="task-group-item">Cras justo odio</li>
-        </ul>
-
-        <button className="btn new-task-btn">add new task</button>
-      </div>
-
-      <div className="group-item">
-        <h3 className="group-item-header">Group1</h3>
-        <ul className="tasks-group">
-          <li className="task-group-item">Cras justo odio</li>
-        </ul>
-        
-        <button className="btn new-task-btn">add new task</button>
-      </div>
-      
-    </div>
-
     </>
       
   )
