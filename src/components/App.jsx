@@ -9,42 +9,34 @@ function App({currentTabs, tabs}) {
     <>
       <div className="nav-tabs-navigation">
         <span className="material-icons nav-arrow nav-arrow_backward">arrow_forward_ios</span>
-        <div className="nav-tabs-container">
-          <div className="nav-tabs-item">
+        <div className="nav-tabs-container scroll-container">
+          <div className="nav-tabs-item scroll-item">
             <input type="radio" name="tab-radio" id="tab-radio-0"/>
             <label htmlFor="tab-radio-0">tab #1</label>
           </div>
-          <div className="nav-tabs-item">
-            <input type="radio" name="tab-radio" id="tab-radio-1"/>
-            <label htmlFor="tab-radio-1">tab #1</label>
+          <div className="nav-tabs-item scroll-item">
+            <input type="radio" name="tab-radio" id="tab-radio-0"/>
+            <label htmlFor="tab-radio-0">tab #1</label>
           </div>
-          <div className="nav-tabs-item">
-            <input type="radio" name="tab-radio" id="tab-radio-1"/>
-            <label htmlFor="tab-radio-1">tab #1</label>
+          <div className="nav-tabs-item scroll-item">
+            <input type="radio" name="tab-radio" id="tab-radio-0"/>
+            <label htmlFor="tab-radio-0">tab #1</label>
           </div>
-          <div className="nav-tabs-item">
-            <input type="radio" name="tab-radio" id="tab-radio-1"/>
-            <label htmlFor="tab-radio-1">tab #1</label>
+          <div className="nav-tabs-item scroll-item">
+            <input type="radio" name="tab-radio" id="tab-radio-0"/>
+            <label htmlFor="tab-radio-0">tab #1</label>
           </div>
-          <div className="nav-tabs-item">
-            <input type="radio" name="tab-radio" id="tab-radio-1"/>
-            <label htmlFor="tab-radio-1">tab #1</label>
+          <div className="nav-tabs-item scroll-item">
+            <input type="radio" name="tab-radio" id="tab-radio-0"/>
+            <label htmlFor="tab-radio-0">tab #1</label>
           </div>
-          <div className="nav-tabs-item">
-            <input type="radio" name="tab-radio" id="tab-radio-1"/>
-            <label htmlFor="tab-radio-1">tab #1</label>
+          <div className="nav-tabs-item scroll-item">
+            <input type="radio" name="tab-radio" id="tab-radio-0"/>
+            <label htmlFor="tab-radio-0">tab #1</label>
           </div>
-          <div className="nav-tabs-item">
-            <input type="radio" name="tab-radio" id="tab-radio-1"/>
-            <label htmlFor="tab-radio-1">tab #1</label>
-          </div>
-          <div className="nav-tabs-item">
-            <input type="radio" name="tab-radio" id="tab-radio-1"/>
-            <label htmlFor="tab-radio-1">tab #1</label>
-          </div>
-          <div className="nav-tabs-item">
-            <input type="radio" name="tab-radio" id="tab-radio-1"/>
-            <label htmlFor="tab-radio-1">tab #1</label>
+          <div className="nav-tabs-item scroll-item">
+            <input type="radio" name="tab-radio" id="tab-radio-0"/>
+            <label htmlFor="tab-radio-0">tab #1</label>
           </div>
           <div className="nav-tabs-item new-tab-input">
             <div className="input-container input-container-round input-container-active">
@@ -54,6 +46,33 @@ function App({currentTabs, tabs}) {
           </div>
         </div>
         <span className=" nav-arrow material-icons">arrow_forward_ios</span>
+      </div>
+      <div className="cards-container scroll-container">
+       
+
+        <div className="card-item scroll-item">
+          <div className="card">
+            <div className="card-header">
+              <h2 className="card-title">Title</h2>
+            </div>
+            <div className="card-body">
+              <ul className="tasks-container">
+                <li className="task">Cras justo odio</li>
+                <li className="task">Cras justo odio</li>
+                <li className="task">Cras justo odio</li>
+                <li className="task">Cras justo odio</li>
+                <li className="task">Cras justo odio</li>
+                <li className="task">Cras justo odio</li>
+              </ul>
+            </div>
+            <div className="card-footer">
+
+            </div>
+          </div>
+        </div>
+
+
+
       </div>
     </>
       

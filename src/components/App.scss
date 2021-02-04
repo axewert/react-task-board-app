@@ -1,6 +1,25 @@
 @import '../variables';
 
 
+.scroll-container {
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  display: flex;
+}
+
+.scroll-item {
+  display: inline-flex;
+  flex: none;
+  &::-webkit-scrollbar {
+
+    display: none;
+
+  }
+}
+
 .nav-tabs-navigation {
   background: linear-gradient(#1e1e2f,#1e1e24);
   padding: 2rem;
@@ -25,27 +44,13 @@
 }
 
 .nav-tabs-container {
-  display: flex;
-
-  -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-
   @media (min-width: 992px) {
     width: 60%;
   }
 }
 
 .nav-tabs-item {
-  display: inline-flex;
-  flex: none;
-  &::-webkit-scrollbar {
 
-    display: none;
-
-  }
   input[type = radio] {
     display: none;
   }
@@ -141,4 +146,29 @@
     position: absolute;
     left: 70%;
   }
+}
+
+
+.card-item {
+  width: 100%;
+}
+.card {
+  background: #1f2251;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding: .8rem;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .3 0;
+}
+
+.card-title {
+  font-size: 1.5rem;
 }
